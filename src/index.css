@@ -1,0 +1,337 @@
+/* language: CSS, file: src/index.css, runtime: Tailwind CSS 4 (CSS-first), target: Página Prumo
+ * *No Tailwind 4 o tema vive no CSS via @theme, não em tailwind.config.js. Todo token declarado
+ *  aqui vira utilitário automaticamente (bg-prumo-*, text-ink-*, etc). A escala tipográfica e a
+ *  escala de espaçamento da skill NÃO são redeclaradas: os defaults do Tailwind já são a fonte.
+ */
+
+@import 'tailwindcss';
+
+@theme {
+  /* ------------------------------------------------------------------
+   * Escala de espaçamento (skill B2), ancorada em pixel.
+   *
+   * No Tailwind 4 cada utilitário de espaço é calc(var(--spacing) * N). Com o
+   * --spacing padrão de 0.25rem, `p-300` valeria 1200px — quatro vezes o
+   * pretendido. Fixando --spacing em 1px, o número da classe passa a ser
+   * literalmente o valor em pixel, e a tabela da skill fica legível:
+   * p-2, p-4, p-8, p-12, p-16, p-24, p-32, p-40, p-48, p-64, p-80, p-96.
+   *
+   * Nenhum valor intermediário é permitido. Se um espaçamento não está nesta
+   * lista, ele não existe no sistema.
+   * ------------------------------------------------------------------ */
+  --spacing: 1px;
+
+  /* ---- Paleta Prumo (skill B4: fundos sempre flat, sem gradiente) ---- */
+  --color-prumo-graphite: #202522;
+  --color-prumo-forest: #193c34;
+  --color-prumo-forest-deep: #122b26;
+  --color-prumo-offwhite: #f5f3ee;
+  --color-prumo-neutral: #8a8d88;
+  --color-prumo-sage: #a9b9aa;
+  --color-prumo-line: #dcd8cf;
+  --color-prumo-line-dark: #333a36;
+
+  /* ---- Tipografia: Manrope, única família do site (B1: uma typeface por site) ---- */
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Curva base de movimento (B7) ---- */
+  --ease-prumo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* compensa a navbar flutuante ao pular para âncoras */
+    scroll-padding-top: 7rem;
+  }
+
+  body {
+    background-color: var(--color-prumo-offwhite);
+    color: var(--color-prumo-graphite);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* B10: nenhum overflow horizontal em 375px */
+    overflow-x: hidden;
+  }
+
+  /* B1: nenhum itálico em lugar algum da interface */
+  em,
+  i,
+  address {
+    font-style: normal;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-prumo-forest);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-prumo-sage);
+    color: var(--color-prumo-graphite);
+  }
+}
+
+@layer components {
+  /* ---------------------------------------------------------------
+   * B1 — Text styles nomeados. Cada estilo é definido UMA vez aqui e
+   * aplicado por nome. Nenhum elemento recebe size+weight solto.
+   * --------------------------------------------------------------- */
+
+  .heading-1 {
+    font-size: 3.75rem; /* text-6xl */
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .heading-2 {
+    font-size: 3rem; /* text-5xl */
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  .heading-3 {
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .heading-4 {
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .heading-5 {
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .heading-6 {
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  .title-1 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+  }
+
+  .title-2 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+  }
+
+  .title-3 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+  }
+
+  .title-4 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+  }
+
+  .title-5 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+  }
+
+  .body-1 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    text-wrap: pretty;
+  }
+
+  .body-2 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    text-wrap: pretty;
+  }
+
+  .body-3 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+
+  .body-4 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    text-wrap: pretty;
+  }
+
+  .body-5 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    text-wrap: pretty;
+  }
+
+  .body-6 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+
+  .button-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .button-md {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  .button-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+  }
+
+  .button-xsm {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+  }
+
+  .caption-1 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+  }
+
+  .caption-2 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+  }
+
+  .caption-3 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+  }
+
+  .caption-4 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+  }
+
+  .caption-5 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 400;
+  }
+
+  /* B5 — gradiente é permitido APENAS no texto do hero, nunca no fundo */
+  .hero-heading-gradient {
+    background-image: linear-gradient(
+      to right,
+      var(--color-prumo-graphite),
+      #6b6f6b
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-heading-gradient-inverse {
+    background-image: linear-gradient(to right, #ffffff, #9b9b9b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@layer utilities {
+  /* B9 — estado ativo com feedback físico, conforme a skill */
+  .press {
+    transition:
+      transform 300ms var(--ease-prumo),
+      background-color 300ms var(--ease-prumo),
+      color 300ms var(--ease-prumo),
+      border-color 300ms var(--ease-prumo);
+  }
+
+  .press:active {
+    transform: scale(0.98);
+  }
+
+  /* Barra de carregamento do botão de envio (B9: skeleton, nunca spinner circular) */
+  @keyframes loading {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  /* B7 — reveal de seção: sobe 32px e aparece, uma vez só */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+      opacity 700ms var(--ease-prumo),
+      transform 700ms var(--ease-prumo);
+    will-change: opacity, transform;
+  }
+
+  .reveal[data-visible='true'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* B7 / B11 — sob prefers-reduced-motion nada se move: só opacidade, ou nada */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
