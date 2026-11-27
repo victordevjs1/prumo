@@ -11,7 +11,7 @@ export function FinalCTA() {
   const { ref, isVisible } = useReveal<HTMLDivElement>({ threshold: 0.15 })
 
   return (
-    <section aria-labelledby="cta-final-heading" className="bg-prumo-offwhite px-24 pb-80 sm:px-32 sm:pb-96">
+    <section id="cta-final" aria-labelledby="cta-final-heading" className="bg-prumo-offwhite px-24 pb-80 sm:px-32 sm:pb-96">
       <div
         ref={ref}
         data-visible={isVisible}

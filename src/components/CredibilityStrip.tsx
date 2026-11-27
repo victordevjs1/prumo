@@ -11,7 +11,7 @@ export function CredibilityStrip() {
   const { ref, isVisible } = useReveal<HTMLDivElement>({ threshold: 0.2 })
 
   return (
-    <section aria-label="Credibilidade" className="bg-prumo-offwhite px-24 sm:px-32">
+    <section id="credibilidade" aria-label="Credibilidade" className="bg-prumo-offwhite px-24 sm:px-32">
       <div className="mx-auto max-w-[1280px]">
         <div
           ref={ref}

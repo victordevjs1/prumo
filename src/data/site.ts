@@ -71,7 +71,7 @@ export const HERO_PANEL = {
   ],
   flags: [
     'Centro de custo sem responsável',
-    'Preço revisado pela última vez em {{data_ultima_revisao_preco}}',
+    'Preço revisado pela última vez em 20/10',
     'Indicador de caixa apurado fora do sistema',
   ],
 } as const

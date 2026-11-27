@@ -30,7 +30,7 @@ export function TaglineReveal() {
 
   return (
     <section
-      aria-labelledby="tagline-heading"
+      id="tagline" aria-labelledby="tagline-heading"
       className="bg-prumo-graphite px-24 py-80 sm:px-32 sm:py-96"
     >
       <div className="mx-auto max-w-[1280px]">
